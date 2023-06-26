@@ -13,7 +13,7 @@ export default function AssetsDetail({tabactive}) {
           <div className={`asset_detail_section_outer_wrap ${sidesplit ? "active" : "false"}`}>
             <div className='assets_deatil_main_outer_wrap'>
               <div className='page_title_outer_wrap assets_detail_title_outer_wrap'>
-                <h1>Assets#: 54371: Dosing</h1>
+                <h1>Employee Master</h1>
                 <div className='assets_detail_active_wrap'>
                   <h4 className='asset_active'>Active</h4>
                   <div className='filter_dropdown_wrap drop_no_arrow three_dot_drop_outer_wrap'>

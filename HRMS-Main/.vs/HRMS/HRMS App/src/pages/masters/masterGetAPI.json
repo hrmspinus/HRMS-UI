@@ -1,53 +1,67 @@
 [
   {
-    "masterName": "assetCategory",
-    "apiURL": "/assetcategory/getall"
+    "masterName": "Department",
+    "apiURL": "/Department"
   },
   {
-    "masterName": "assetsCriticality",
-    "apiURL": "/assetscriticality/getall"
-  }
-  ,
+    "masterName": "Designation",
+    "apiURL": "/Designation"
+  },
   {
-    "masterName": "assetsPriority",
-    "apiURL": "/assetpriority/getall"
-  }
-  ,
+    "masterName": "LeaveType",
+    "apiURL": "/LeaveType"
+  },
   {
-    "masterName": "assetsStatus",
-    "apiURL": "/assetstatus/getall"
-  }
-  ,{
-    "masterName": "assetsType",
-    "apiURL": "/assettype/getall"
-  }
-  ,{
-    "masterName": "assetsWarranty",
-    "apiURL": "/assetwarranty/getall"
-  }
-  ,{
-    "masterName": "assetsLocation",
-    "apiURL": "/assetslocation/getall"
-  }
-  ,{
-    "masterName": "locationType",
-    "apiURL": "/locationType/getall"
-  }
-  ,{
-    "masterName": "location",
-    "apiURL": "/location/getall"
-  }
-  ,{
-    "masterName": "assets",
-    "apiURL": "/assets/getall"
-  }
-  ,{
-    "masterName": "failureClass",
-    "apiURL": "/failureclass/getall"
-  }
-  ,{
-    "masterName": "uom",
-    "apiURL": "/uom/getall"
+    "masterName": "EmployeeType",
+    "apiURL": "/EmployeeType"
+  },
+  {
+    "masterName": "AddressType",
+    "apiURL": "/AddressType"
+  },
+  {
+    "masterName": "BloodGroup",
+    "apiURL": "/BloodGroup"
+  },
+  {
+    "masterName": "Location",
+    "apiURL": "/Location"
+  },
+  {
+    "masterName": "Relationship",
+    "apiURL": "/Relationship"
+  },
+  {
+    "masterName": "ClaimType",
+    "apiURL": "/ClaimType"
+  },
+  {
+    "masterName": "AppraisalObjectives",
+    "apiURL": "/AppraisalObjectives"
+  },
+  {
+    "masterName": "HrmsUser",
+    "apiURL": "/HrmsUser"
+  },
+  {
+    "masterName": "HrmsRole",
+    "apiURL": "/HrmsRole"
+  },
+  {
+    "masterName": "HrmsPage",
+    "apiURL": "/HrmsPage"
+  },
+  {
+    "masterName": "EmployeeDetails",
+    "apiURL": "/EmployeeDetails/GetAllEmployeeDetails"
+  },
+  {
+    "masterName": "EmployeeExperience",
+    "apiURL": "/EmployeeExperience"
+  },
+  {
+    "masterName": "EmployeeFamilyDetail",
+    "apiURL": "/EmployeeFamilyDetail"
   }
 ]
   

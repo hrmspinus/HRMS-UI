@@ -8,6 +8,7 @@ import SidebarComponent from '../layout/Sidebar';
 import AssetsDetail from '../pages/asset-component/asset-detail'
 import AssetsDetailEdit from '../pages/asset-component/asset_detail_edit'
 import { useLocation } from 'react-router-dom';
+
 const MainRouter = () => {
     const location = useLocation();
     
@@ -24,6 +25,7 @@ const MainRouter = () => {
                             <Route path='/' element={<DashBoardComponent />} />
                             <Route path="/masters" element={<MastersComponent/>} />
                             <Route path="/assets" element={<AssetsComponent />} />
+                            
                             <Route path="/assets_detail" element={<AssetsDetail/>} />
                             <Route path="/assets_detail_edit" element={<AssetsDetailEdit/>} />
                         </Routes>

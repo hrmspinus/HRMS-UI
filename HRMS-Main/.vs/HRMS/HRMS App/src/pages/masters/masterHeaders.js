@@ -2,241 +2,248 @@ function masterHeaders(){
   return (
 [
   {
-    "masterName": "assetCategory",
+    "masterName": "Department",
     "headerName":
        [
-        {jsonHeader:"assetCategoryName", htmlHeader:"Asset Category Name"}
-        ,{jsonHeader:"parentAssetCategoryName", htmlHeader:"Parent Asset Category Name"
-        ,edit:"false"}
-        ,{jsonHeader:"parentCategoryId", htmlHeader:"Parent Category"
-        ,controlType :"selectOption"
-        ,parentName :"assetCategory"
-        ,selectKey:"Id"
-        ,selectValue:"assetCategoryName"
-        ,visible:"false"
-      }
-      //  ,{jsonHeader:"comments", htmlHeader:"Comments"}
-      //  ,{jsonHeader:"notes", htmlHeader:"Notes"}
+        {jsonHeader:"departmentName", htmlHeader:"Department Name"},
+        {jsonHeader:"createdBy", htmlHeader:"Created By"}
+        
+      
+      
       ]
   },
   {
-    "masterName": "assetsCriticality",
+    "masterName": "Designation",
     "headerName":
        [
-        {jsonHeader:"criticalityName", htmlHeader:"Criticality Name"}
-        ,{jsonHeader:"rpnFrom", htmlHeader:"Rpn From",controlType :"datePicker"}
-        ,{jsonHeader:"rpnTo", htmlHeader:"Rpn To",controlType :"datePicker"}
+        {jsonHeader:"designationName", htmlHeader:"Designation Name"},
+        {jsonHeader:"createdBy", htmlHeader:"Created By"}
+      
+      
       ]
-  }
-  ,
+  },
   {
-    "masterName": "assetsPriority",
+    "masterName": "LeaveType",
     "headerName":
        [
-        {jsonHeader:"priorityName", htmlHeader:"Priority Name"}
+        {jsonHeader:"leaveTypeName", htmlHeader:"LeaveType Name"},
+        {jsonHeader:"createdBy", htmlHeader:"Created By"}
+        
+      
+      
       ]
-  }
-  ,
+  },
   {
-    "masterName": "assetsStatus",
+    "masterName": "EmployeeType",
     "headerName":
        [
-        {jsonHeader:"statusName", htmlHeader:"Status Name"}
+        {jsonHeader:"employeeTypeName", htmlHeader:"EmployeeType Name"},
+        {jsonHeader:"createdBy", htmlHeader:"Created By"}
+        
+      
+      
       ]
-  }
-  ,
+  },
   {
-    "masterName": "assetsType",
+    "masterName": "AddressType",
     "headerName":
        [
-        {jsonHeader:"assetTypeName", htmlHeader:"AssetType Name"}
+        {jsonHeader:"addressTypeName", htmlHeader:"AddressType Name"},
+        {jsonHeader:"createdBy", htmlHeader:"Created By"}
+        
+      
+      
       ]
-  }
-  ,{
-    "masterName": "assetsWarranty",
-    "headerName":
-       [
-        {jsonHeader:"warrantyName", htmlHeader:"Warranty Name"}
-       ,{jsonHeader:"startDate", htmlHeader:"Start Date"
-       ,controlType :"datePicker"}
-       ,{jsonHeader:"expirationDate", htmlHeader:"Expiration Date"
-       ,controlType :"datePicker"}
-      //  ,{jsonHeader:"warrantyType", htmlHeader:"Warranty Type"}
-      //  ,{jsonHeader:"warrantyStatus", htmlHeader:"Warranty Status"}
-      //  ,{jsonHeader:"threshholdDate", htmlHeader:"Threshhold Date"}
-      //  ,{jsonHeader:"startingUsage", htmlHeader:"Starting Usage"}
-      //  ,{jsonHeader:"expirationUsage", htmlHeader:"Expiration Usage"}
-      //  ,{jsonHeader:"threshHoldUOM", htmlHeader:"ThreshHold UOM"}
-
-      ]
-  }
-
-
-  ,
+  },
   {
-    "masterName": "locationType",
+    "masterName": "BloodGroup",
     "headerName":
        [
-        {jsonHeader:"locationTypeName", htmlHeader:"Location Type Name"}
+        {jsonHeader:"bloodGroupName", htmlHeader:"BloodGroup Name"},
+        {jsonHeader:"createdBy", htmlHeader:"Created By"}
+        
+      
+      
       ]
-  }
-  ,
+  },
   {
-    "masterName": "location",
+    "masterName": "Location",
     "headerName":
        [
-        {jsonHeader:"locationName", htmlHeader:"Location Name"}
-        ,{jsonHeader:"locationDesc", htmlHeader:"Location Desc"}
-        ,{jsonHeader:"locationType", htmlHeader:"Location Type",edit:"false"}
-        ,{jsonHeader:"parentLocation", htmlHeader:"Parent Location",edit:"false"}
-        ,{jsonHeader:"parentLocationId", htmlHeader:"Parent Location"
-       ,controlType :"selectOption"
-       ,parentName :"location"
-       ,selectKey:"Id"
-       ,selectValue:"locationName"
-       ,visible:"false"}
-        ,{jsonHeader:"locationTypeId", htmlHeader:"Location Type"
+        {jsonHeader:"locationName", htmlHeader:"Location Name"},
+        {jsonHeader:"createdBy", htmlHeader:"Created By"}
+        
+      
+      
+      ]
+  },
+  {
+    "masterName": "Relationship",
+    "headerName":
+       [
+        {jsonHeader:"relationShipName", htmlHeader:"Relationship Name"},
+        {jsonHeader:"createdBy", htmlHeader:"Created By"}
+        
+      
+      
+      ]
+  },
+  {
+    "masterName": "ClaimType",
+    "headerName":
+       [
+        {jsonHeader:"claimTypeName", htmlHeader:"ClaimType Name"},
+        {jsonHeader:"createdBy", htmlHeader:"Created By"}
+        
+      
+      
+      ]
+  },
+  {
+    "masterName": "AppraisalObjectives",
+    "headerName":
+       [
+        {jsonHeader:"appraisalName", htmlHeader:"AppraisalObjectives Name"},
+        {jsonHeader:"createdBy", htmlHeader:"Created By"}
+        
+      
+      
+      ]
+  },
+  {
+    "masterName": "HrmsUser",
+    "headerName":
+       [
+        {jsonHeader:"roleName", htmlHeader:"Role Name"
+        ,edit:"false"}
+        ,{jsonHeader:"roleID", htmlHeader:"Role Name"
         ,controlType :"selectOption"
-        ,parentName :"locationType"
-        ,selectKey:"Id"
-        ,selectValue:"locationTypeName"
-        ,visible:"false"}
+        ,parentName :"HrmsRole"
+        ,selectKey:"roleID"
+        ,selectValue:"roleName"
+        ,visible:"false"
+      },
+      
+        {jsonHeader:"userName", htmlHeader:"User Name"},
+        {jsonHeader:"firstName", htmlHeader:"First Name"},
+        {jsonHeader:"lastName", htmlHeader:"Last Name"},
+        {jsonHeader:"middleName", htmlHeader:"Middle Name"},
+
+        
+
+     
+        
+       
+        {jsonHeader:"createdBy", htmlHeader:"Created By"}
+        
+      
+      
       ]
-  }
-  ,
+  },
   {
-    "masterName": "assetsLocation",
+    "masterName": "HrmsRole",
     "headerName":
        [
-        {jsonHeader:"assetName", htmlHeader:"Asset Name","edit":"false"}
-        ,{jsonHeader:"locationName", htmlHeader:"Location Name","edit":"false"}
-        ,{jsonHeader:"locationId", htmlHeader:"Location"
-       ,controlType :"selectOption"
-       ,parentName :"location"
-       ,selectKey:"Id"
-       ,selectValue:"locationName"
-       ,visible:"false"}
-       ,{jsonHeader:"assetId", htmlHeader:"Asset"
-       ,controlType :"selectOption"
-       ,parentName :"assets"
-       ,selectKey:"Id"
-       ,selectValue:"assetName"
-       ,visible:"false"}
-       ,{jsonHeader:"quantity", htmlHeader:"Quantity"}
-       ,{jsonHeader:"comments", htmlHeader:"Comments"}
-       ,{jsonHeader:"notes", htmlHeader:"Notes"}
+        {jsonHeader:"roleName", htmlHeader:"Role Name"},
+        {jsonHeader:"roleID", htmlHeader:"Role ID"},
+        {jsonHeader:"createdBy", htmlHeader:"Created By"}
+        
+      
+      
+      ]
+  },
+  {
+    "masterName": "HrmsPage",
+    "headerName":
+       [
+        {jsonHeader:"pageName", htmlHeader:"Page Name"},
+        {jsonHeader:"roleID", htmlHeader:"Role ID"},
+        {jsonHeader:"pageID", htmlHeader:"Page ID"},
+        {jsonHeader:"createdBy", htmlHeader:"Created By"}
+        
+    
+      
+      ]
+  },
+  {
+    "masterName": "EmployeeDetails",
+    "headerName":
+       [ 
+        // {jsonHeader:"organisationID", htmlHeader:"Organisation ID"},
+        // {jsonHeader:"autoNumber", htmlHeader:"Auto Number "},
+        // {jsonHeader:"firstName", htmlHeader:"First Name"},
+        // {jsonHeader:"middleName", htmlHeader:"Middle Name"},
+        // {jsonHeader:"lastName", htmlHeader:"Last Name"},
+        {jsonHeader:"employeeName", htmlHeader:"Employee Name",controlType :"link"},
+        {jsonHeader:"dateOfBirth", htmlHeader:"Date Of Birth",controlType :"Calender"},
+        {jsonHeader:"age", htmlHeader:"Age"},
+    
+      //   {jsonHeader:"gender", htmlHeader:"Gender"
+      //   ,edit:"false"}
+      //   ,{jsonHeader:"employeeID", htmlHeader:"Gender"
+      //   ,controlType :"selectOption"
+      //   ,parentName :"EmployeeDetails"
+      //   ,selectKey:"employeeID"
+      //   ,selectValue:"handleChange"
+      //   ,visible:"false"
+      // },
+        {jsonHeader:"gender", htmlHeader:"Gender"},
+        {jsonHeader:"email", htmlHeader:"Email"},
+        {jsonHeader:"phoneNumber", htmlHeader:"Phone Number"},
+        {jsonHeader:"emergencyContactNumber", htmlHeader:"Emergency Contact Number"},
+        {jsonHeader:"location", htmlHeader:"Location"},
+        {jsonHeader:"maritalStatus", htmlHeader:"Marital Status"},
+        {jsonHeader:"hireDate", htmlHeader:"Hire Date"},
+        //  {jsonHeader:"managerID", htmlHeader:"Manager ID"},
+       {jsonHeader:"managerName", htmlHeader:"Manager Name"},
+        // {jsonHeader:"businessTitleID", htmlHeader:"Business Title ID"},
+        // {jsonHeader:"departmentID", htmlHeader:"Department ID"},
+        {jsonHeader:"departmentName", htmlHeader:"Department Name"},
+        // {jsonHeader:"designationID", htmlHeader:"Designation ID"},
+        {jsonHeader:"designationName", htmlHeader:"Designation Name"},
+        // {jsonHeader:"bloodGroupID", htmlHeader:"BloodGroup ID"},
+        {jsonHeader:"bloodGroupName", htmlHeader:"BloodGroup Name"},
+        // {jsonHeader:"createdBy", htmlHeader:"Created By"},
+        // {jsonHeader:"modifiedBy", htmlHeader:"Modified By"}
+    
+      
+      ]
+  },
+  {
+    "masterName": "EmployeeExperience",
+    "headerName":
+       [ 
+        {jsonHeader:"employeeID", htmlHeader:"Employee ID"},
+        {jsonHeader:"companyName", htmlHeader:"Company Name "},
+        {jsonHeader:"designation", htmlHeader:"Designation"},
+        {jsonHeader:"startDate", htmlHeader:"start Date"},
+        {jsonHeader:"endDate", htmlHeader:"End Date"},
+        {jsonHeader:"yearsWorked", htmlHeader:"Years Worked"},
+        {jsonHeader:"salary", htmlHeader:"Salary"},
+        {jsonHeader:"createdBy", htmlHeader:"Created By"},
+        {jsonHeader:"modifiedBy", htmlHeader:"Modified By"}
+    
+      
+      ]
+  },
+  {
+    "masterName": "EmployeeFamilyDetail",
+    "headerName":
+       [ 
+        {jsonHeader:"employeeID", htmlHeader:"Employee ID"},
+        {jsonHeader:"name", htmlHeader:"Name"},
+        {jsonHeader:"relationShip", htmlHeader:"RelationShip"},
+        {jsonHeader:"age", htmlHeader:"Age"},
+        {jsonHeader:"dob", htmlHeader:"Dob"},
+        {jsonHeader:"contactNo", htmlHeader:"Contact No"},
+        {jsonHeader:"createdBy", htmlHeader:"Created By"},
+        {jsonHeader:"modifiedBy", htmlHeader:"Modified By"}
+    
       
       ]
   }
-  ,
-  {
-    "masterName": "failureClass",
-    "headerName":
-       [
-        {jsonHeader:"failureClassName", htmlHeader:"Failure Class Name"}
-       //,{jsonHeader:"failureCodeList", htmlHeader:"FailureCodeList"}
-       ,{jsonHeader:"comments", htmlHeader:"Comments"}
-       ,{jsonHeader:"notes", htmlHeader:"Notes"}
-     //  ,{jsonHeader:"assetId", htmlHeader:"AssetId"}
-      ]
-  }
-  ,
-  {
-    "masterName": "assets",
-    "headerName":
-       [
-        {jsonHeader:"assetName", htmlHeader:"Asset Name",controlType :"link"}
-        ,{jsonHeader:"assetId", htmlHeader:"assetId", controlType :"hidden"}
-        ,{jsonHeader:"statusName", htmlHeader:"Asset Status",edit:"false"}
-        ,{jsonHeader:"assetCategoryName", htmlHeader:"Asset Category Name",edit:"false"
-        ,visible:"false"}
-        ,{jsonHeader:"assetCategoryId", htmlHeader:"Asset Category Name"
-        ,controlType :"selectOption"
-        ,parentName :"assetCategory"
-        ,selectKey:"Id"
-        ,selectValue:"assetCategoryName"
-        ,visible:"false"
-       }
-       ,{jsonHeader:"assetTypeName", htmlHeader:"Asset Type Name",edit:"false"}
-       ,{jsonHeader:"priorityName", htmlHeader:"Priority",edit:"false"}
-       ,{jsonHeader:"criticalityName", htmlHeader:"Criticality",edit:"false"}
-       ,{jsonHeader:"serialNumber", htmlHeader:"Serial Number",visible:"false"}
-      
-       ,{jsonHeader:"failureClassName", htmlHeader:"Failure Class Name",edit:"false",visible:"false"}
-       
-       ,{jsonHeader:"warrantyName", htmlHeader:"Warranty Name",edit:"false"
-       ,visible:"false"}
-       ,{jsonHeader:"uomName", htmlHeader:"UOM Name",edit:"false",visible:"false"}
-       ,{jsonHeader:"model", htmlHeader:"Model",visible:"false"}
-       ,{jsonHeader:"purchasePrice", htmlHeader:"Purchase Price" ,visible:"false"}
-       ,{jsonHeader:"installationDate", htmlHeader:"Installation Date"
-       ,controlType :"datePicker",visible:"false"}
-       ,{jsonHeader:"startDate", htmlHeader:"Start Date"
-       ,controlType :"datePicker",visible:"false"}
-       ,{jsonHeader:"expirationDate", htmlHeader:"Expiration Date"
-       ,controlType :"datePicker",visible:"false"}
-      ,{jsonHeader:"threshHoldCalendar", htmlHeader:"ThreshHold Calendar"
-      ,controlType :"datePicker",visible:"false"}
-   //    ,{jsonHeader:"startingUsage", htmlHeader:"Starting Usage"}
-      // ,{jsonHeader:"expirationUsage", htmlHeader:"Expiration Usage"}
-       ,{jsonHeader:"assetTypeId", htmlHeader:"Asset Type"
-        ,controlType :"selectOption"
-        ,parentName :"assetsType"
-        ,selectKey:"Id"
-        ,selectValue:"assetTypeName"
-        ,visible:"false"
-      }
-       ,{jsonHeader:"uomId", htmlHeader:"Uom"
-       ,controlType :"selectOption"
-       ,parentName :"uom"
-       ,selectKey:"Id"
-       ,selectValue:"uomName"
-       ,visible:"false"}
-       ,{jsonHeader:"assetWarrantyId", htmlHeader:"Asset Warranty"
-       ,controlType :"selectOption"
-       ,parentName :"assetsWarranty"
-       ,selectKey:"Id"
-       ,selectValue:"warrantyName"
-       ,visible:"false"}
-       
-       ,{jsonHeader:"failureClassesId", htmlHeader:"Failure Classes"
-       ,controlType :"selectOption"
-       ,parentName :"failureClass"
-       ,selectKey:"Id"
-       ,selectValue:"failureClassName"
-       ,visible:"false"}
-       ,{jsonHeader:"assetPriorityId", htmlHeader:"Asset Priority"
-       ,controlType :"selectOption"
-       ,parentName :"assetsPriority"
-       ,selectKey:"Id"
-       ,selectValue:"priorityName"
-       ,visible:"false"}
-       ,{jsonHeader:"assetCriticalityId", htmlHeader:"Asset Criticality"
-       ,controlType :"selectOption"
-       ,parentName :"assetsCriticality"
-       ,selectKey:"Id"
-       ,selectValue:"criticalityName"
-       ,visible:"false"}
-       ,{jsonHeader:"assetStatusId", htmlHeader:"Asset Status"
-       ,controlType :"selectOption"
-       ,parentName :"assetsStatus"
-       ,selectKey:"Id"
-       ,selectValue:"statusName"
-       ,visible:"false"
-      }
-       ,{jsonHeader:"parentAssetId", htmlHeader:"Parent Asset"
-       ,controlType :"selectOption"
-       ,parentName :"assets"
-       ,selectKey:"Id"
-       ,selectValue:"assetName"
-       ,visible:"false"
-       }
-       ,{jsonHeader:"location", htmlHeader:"Location",showicons:"true"
-       ,headerListKey:"assetsLocation",visible:"false"}
-       ,{jsonHeader:"comments", htmlHeader:"Comments",visible:"false"}
-       ,{jsonHeader:"notes", htmlHeader:"Notes",visible:"false"}
-      ]
-  }
+  
+  
 ]
   
 

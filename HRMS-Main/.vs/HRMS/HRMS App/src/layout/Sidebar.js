@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Sidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
 import './style.css';
@@ -42,29 +43,32 @@ const refreshPage = () => {
         <Sidebar collapsedWidth="0px" width="230px">
           <Menu>
           <SubMenu label="Masters">
-              <MenuItem icon={<img src={Employee_icon} alt="awSnap" />} routerLink={<Link to={getMasterPageLink("/masters?masterName=assetCategory")} />}>Employee Type</MenuItem>
-              <MenuItem icon={<img src={location_icon} alt="awSnap" />} routerLink={<Link to={getMasterPageLink("/masters?masterName=assetsCriticality")} />}>Address Type</MenuItem>
-              <MenuItem icon={<img src={Leave_icon} alt="awSnap" />} routerLink={<Link to={getMasterPageLink("/masters?masterName=assetsPriority")} />}>Leave Type</MenuItem>
-              <MenuItem icon={<img src={Department_icon} alt="awSnap" />} routerLink={<Link to={getMasterPageLink("/masters?masterName=assetsStatus")} />}>Department</MenuItem>
-              <MenuItem icon={<img src={Designation1_icon} alt="awSnap" />} routerLink={<Link to={getMasterPageLink("/masters?masterName=assetsType")} />}>Designation</MenuItem>
-              <MenuItem icon={<img src={Blood_icon} alt="awSnap" />} routerLink={<Link to={getMasterPageLink("/masters?masterName=assetsWarranty")} />}>Blood Group</MenuItem>
-              <MenuItem icon={<img src={location_icon} alt="awSnap" />} routerLink={<Link to={getMasterPageLink("/masters?masterName=locationType")} />}>Location</MenuItem>
-              <MenuItem icon={<img src={Relationship_icon} alt="awSnap" />} routerLink={<Link to={getMasterPageLink("/masters?masterName=location")} />}>Relationship</MenuItem>
-              <MenuItem icon={<img src={Claim_icon} alt="awSnap" />} routerLink={<Link to={getMasterPageLink("/masters?masterName=assetsLocation")} />}>Claim Type</MenuItem>
-              <MenuItem icon={<img src={Appraisal__icon} alt="awSnap" />} routerLink={<Link to={getMasterPageLink("/masters?masterName=assets")} />}>Appraisal Objectives</MenuItem>
+              <MenuItem icon={<img src={Employee_icon} alt="awSnap" />} routerLink={<Link to={getMasterPageLink("/masters?masterName=EmployeeType")} />}>Employee Type</MenuItem>
+              <MenuItem icon={<img src={location_icon} alt="awSnap" />} routerLink={<Link to={getMasterPageLink("/masters?masterName=AddressType")} />}>Address Type</MenuItem>
+              <MenuItem icon={<img src={Leave_icon} alt="awSnap" />} routerLink={<Link to={getMasterPageLink("/masters?masterName=LeaveType")} />}>Leave Type</MenuItem>
+              <MenuItem icon={<img src={Department_icon} alt="awSnap" />} routerLink={<Link to={getMasterPageLink("/masters?masterName=Department")} />}>Department</MenuItem>
+              <MenuItem icon={<img src={Designation1_icon} alt="awSnap" />} routerLink={<Link to={getMasterPageLink("/masters?masterName=Designation")} />}>Designation</MenuItem>
+              <MenuItem icon={<img src={Blood_icon} alt="awSnap" />} routerLink={<Link to={getMasterPageLink("/masters?masterName=BloodGroup")} />}>Blood Group</MenuItem>
+              <MenuItem icon={<img src={location_icon} alt="awSnap" />} routerLink={<Link to={getMasterPageLink("/masters?masterName=Location")} />}>Location</MenuItem>
+              <MenuItem icon={<img src={Relationship_icon} alt="awSnap" />} routerLink={<Link to={getMasterPageLink("/masters?masterName=Relationship")} />}>Relationship</MenuItem>
+              <MenuItem icon={<img src={Claim_icon} alt="awSnap" />} routerLink={<Link to={getMasterPageLink("/masters?masterName=ClaimType")} />}>Claim Type</MenuItem>
+              <MenuItem icon={<img src={Appraisal__icon} alt="awSnap" />} routerLink={<Link to={getMasterPageLink("/masters?masterName=AppraisalObjectives")} />}>Appraisal Objectives</MenuItem>
+              <MenuItem  routerLink={<Link to={getMasterPageLink("/masters?masterName=HrmsUser")} />}>Hrms User</MenuItem>
+              <MenuItem  routerLink={<Link to={getMasterPageLink("/masters?masterName=HrmsRole")} />}>Hrms Role</MenuItem>
+              <MenuItem  routerLink={<Link to={getMasterPageLink("/masters?masterName=HrmsPage")} />}>Hrms Page</MenuItem>
             </SubMenu>
             <SubMenu label="Dashboard">
               <MenuItem routerLink={<Link to="/" />}> Employee Details </MenuItem>
-              <MenuItem routerLink={<Link to="/" />}> Employee Family </MenuItem>
-              <MenuItem routerLink={<Link to="/" />}> Experience </MenuItem>
-              <MenuItem routerLink={<Link to="/" />}> Qualification </MenuItem>
+              <MenuItem routerLink={<Link to={getMasterPageLink("/masters?masterName=EmployeeFamilyDetail")}/>}> Employee Family </MenuItem>
+              <MenuItem routerLink={<Link to={getMasterPageLink("/masters?masterName=EmployeeExperience")}/>}> Experience </MenuItem>
+              <MenuItem routerLink={<Link to={getMasterPageLink("/masters?masterName=EmployeeQualification")}/>}> Qualification </MenuItem>
             </SubMenu>
             <SubMenu label="Assets">
               <MenuItem icon={<img src={location_icon} alt="awSnap" />} routerLink={<Link to="/" />}>
                  Location
               </MenuItem>
-              <MenuItem active={window.location.pathname === "/assets"} icon={<img src={Asset_ico} alt="awSnap" />} routerLink={<Link to="/assets" />}> Asset </MenuItem>
-              <MenuItem icon={<img src={AssetExplore_ico} alt="awSnap" />} routerLink={<Link to="/assets_detail" />}> Asset Explorer</MenuItem>
+              <MenuItem icon={<img src={Asset_ico} alt="awSnap" />} routerLink={<Link to={getMasterPageLink("/masters?masterName=EmployeeDetails")}/>}> Employee </MenuItem>
+              <MenuItem icon={<img src={AssetExplore_ico} alt="awSnap" />} routerLink={<Link to="/assets_detail" />}>Employee Details</MenuItem>
             </SubMenu>
             <SubMenu label="Work Management">
               <MenuItem icon={<img src={serviceRQ_ico} alt="awSnap" />} routerLink={<Link to="/" />}> Service Request</MenuItem>

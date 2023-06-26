@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import '../assets-component.css';
 import { Nav, NavItem, NavLink, TabContent, TabPane } from 'reactstrap';
 import product_img from '../../../assets/images/product.png';
@@ -9,59 +9,47 @@ import leftarrow from '../../../assets/images/left-arrow.png';
 import back_arrow from '../../../assets/images/back_arrow.png';
 import { Configuration } from "../../../config/index";
 import { useLocation } from 'react-router-dom';
+import DatePicker from 'react-datepicker';
+import Radio from './Radio';
 export default function AssetDetailTab({tabactive}) {
   const query = new URLSearchParams(useLocation().search);
-  var queryAssetId=query.get('AssetId');
+  var queryId=query.get('id');
   const [activeTab, setActiveTab] = useState('1');
   const BASE_URL = (url) => Configuration.BASE_URL + url;
-  const AssetItemUrl=BASE_URL('/assets/getbyid/'+queryAssetId);
-  const AssetPartsUrl=BASE_URL('/assetparts/partsbyassetid/'+queryAssetId);
-  const AssetLocationUrl=BASE_URL('/assetslocation/getlocationsbyasset/'+queryAssetId);
- const AssetEditUrl="/assets_detail_edit?AssetId="+queryAssetId;
-   const [AssetItem, setAssetItem]= useState('1');
+  const EmployeeItemUrl=BASE_URL('/EmployeeDetails/GetEmployeeDetails?EmployeeID='+queryId);
+  const AssetEditUrl="/assets_detail_edit?AssetId="+queryId;
+   const [EmployeeItem, setEmployeeItem]= useState([]);
    const [AssetPartsList, setAssetPartsList]= useState([]);
-   const [AssetLocation, setAssetLocation]= useState([]);
-    fetch(AssetItemUrl)
+   const [startDate, setStartDate] = useState();
+   const [GenderItem, setGenderItem] = useState();
+
+
+   const genderlist = [
+    { label: 'Male', value: 'Male' },
+    { label: 'Female', value: 'Female' },
+  ];
+   useEffect(() => {
+    fetch(EmployeeItemUrl)
     .then(res => {
+        
         if (res.status >= 400) {
             throw new Error("Server responds with error!")
         }
         return res.json()
     })
-    .then(data => {
-        setAssetItem(data.result);
-        fetch(AssetPartsUrl)
-        .then(res => {
-            if (res.status >= 400) {
-                throw new Error("Server responds with error!")
-            }
-            return res.json()
-        })
-        .then(data => {
-            setAssetPartsList(data.result);
-            
-            fetch(AssetLocationUrl)
-            .then(res => {
-                if (res.status >= 400) {
-                    throw new Error("Server responds with error!")
-                }
-                return res.json()
-            })
-            .then(data => {
-                setAssetLocation(data.result[0]);
-                return 0;
-            })
-            
-        },
-          err => {
-               
-            })
-    },
-      err => {
-           
+    .then(data => {debugger;
+
+        
+        setGenderItem(genderlist.filter(a => a.label == data[0].gender)[0].value);
+        var dt=new Date(data[0].hireDate);
+        setEmployeeItem(data[0]);
+        setStartDate(dt);
         })
 
 
+}, []);
+
+    
         
 
   return (
@@ -70,22 +58,22 @@ export default function AssetDetailTab({tabactive}) {
             <Nav tabs>
                 <NavItem>
                     <NavLink className={activeTab === '1' ? 'active' : ''} onClick={() => setActiveTab('1')}>
-                        General 
+                        Employee Details 
                     </NavLink>
                 </NavItem>
                 <NavItem>
                     <NavLink className={activeTab ==='2' ? 'active' : ''} onClick={() => setActiveTab('2')}>
-                        Parts/BOM
+                        Employee Experience
                     </NavLink>
                 </NavItem>
                 <NavItem>
                     <NavLink className={activeTab === '3' ? 'active' : ''} onClick={() => setActiveTab('3')}>
-                    Work
+                    Employee Family Details
                     </NavLink>
                 </NavItem>
                 <NavItem>
                     <NavLink className={activeTab === '4' ? 'active' : ''} onClick={() => setActiveTab('4')}>
-                        Specifications
+                        Employee Qualification
                     </NavLink>
                 </NavItem>
             </Nav>
@@ -101,57 +89,72 @@ export default function AssetDetailTab({tabactive}) {
                 <div className='asset_detail_tab_row_wrap'>
                     <div className='asset_detail_tab_left_card_wrap'>
                         <div className='asset_detail_tab_header_card_wrap'>
-                            <h4>Basic</h4>
+                            <h4>Personal Info.</h4>
                         </div>
                         <div className='asset_detail_tab_header_body_wrap'>
                             <div className='asset_detail_tab_field_row_wrap'>
                                 <div className='asset_detail_tab_fields_wrap'>
                                     <ul>
-                                        <li>
-                                            <h4>Asset Type ID</h4>
-                                            <h5>{AssetItem.assetTypeName }</h5>
+                                        {/* <li>
+                                            <h4>First Name</h4>
+                                            <h5>{EmployeeItem.firstName }</h5>
                                         </li>
                                         <li>
-                                            <h4>Asset Name</h4>
-                                            <h5>{AssetItem.assetName }</h5>
+                                            <h4>Last Name</h4>
+                                            <h5>{EmployeeItem.lastName }</h5>
                                         </li>
                                         <li>
-                                            <h4>Priority ID</h4>
-                                            <h5>{AssetItem.priorityName }</h5>
+                                            <h4>Middle Name</h4>
+                                            <h5>{EmployeeItem.middleName }</h5>
+                                        </li> */}
+                                        <li>
+                                            <h4>Employee Name</h4>
+                                            <h5>{EmployeeItem.employeeName }</h5>
+                                        </li>
+                                        
+                                        
+                                        <li>
+                                            <h4>Date Of Birth</h4>
+                                            <h5>{EmployeeItem.dateOfBirth }</h5>
                                         </li>
                                         <li>
-                                            <h4>Asset Desc</h4>
-                                            <h5>{AssetItem.assetName }</h5>
+                                            <h4>Age</h4>
+                                            <h5>{EmployeeItem.age }</h5>
                                         </li>
                                         <li>
-                                            <h4>Criticality ID</h4>
-                                            <h5>{AssetItem.criticalityName }</h5>
+                                            <h4>Gender</h4>
+                     
+                                            <Radio
+            dataSrc={genderlist}
+            onChange={(e) => this.handleOnChange(e)}
+            selected={GenderItem}
+          />
                                         </li>
                                         <li>
-                                            <h4>Parent ID</h4>
-                                            <h5>{AssetItem.parentAssetName }</h5>
+                                            <h4>Email</h4>
+                                            <h5>{EmployeeItem.email }</h5>
                                         </li>
                                         <li>
-                                            <h4>Failure class ID</h4>
-                                            <h5>{AssetItem.failureClassName }</h5>
+                                            <h4>Phone Number</h4>
+                                            <h5>{EmployeeItem.phoneNumber }</h5>
                                         </li>
                                         <li>
-                                            <h4>Location ID</h4>
-                                            <h5>{AssetLocation.locationName }</h5>
+                                            <h4>Emergency Contact Number</h4>
+                                            <h5>{EmployeeItem.emergencyContactNumber }</h5>
                                         </li>
                                         <li>
-                                            <h4>Rotating</h4>
-                                            <h5>{AssetItem.assetPriorityID }</h5>
+                                            <h4>Location</h4>
+                                            <h5>{EmployeeItem.location }</h5>
                                         </li>
                                         <li>
-                                            <h4>Asset category ID</h4>
-                                            <h5>{AssetItem.categoryName }</h5>
+                                            <h4>Marital Status</h4>
+                                            <h5>{EmployeeItem.maritalStatus }</h5>
                                         </li>
                                     </ul>
                                 </div>
-                                <div className='asset_detail_img_wrap'>
+                                {/* <div className='asset_detail_img_wrap'>
                                 <img src={product_img} alt="product_img"/>
-                                </div>
+                                </div> */}
                             </div>
                         </div>
                     </div>
@@ -163,42 +166,53 @@ export default function AssetDetailTab({tabactive}) {
                             <div className='asset_detail_tab_field_row_wrap'>
                                 <div className='asset_detail_tab_fields_wrap'>
                                     <ul>
-                                        <li>
-                                            <h4>Serial number</h4>
-                                            <h5>{AssetItem.serialNumber }</h5>
+                                        {/* <li>
+                                            <h4>Organisation ID</h4>
+                                            <h5>{EmployeeItem.organisationID }</h5>
                                         </li>
                                         <li>
-                                            <h4>Manufacturer</h4>
-                                            <h5></h5>
+                                            <h4>Auto Number</h4>
+                                            <h5>{EmployeeItem.autoNumber }</h5>
+                                        </li> */}
+                                        <li>
+                                            <h4>Hire Date</h4>
+                                            
+                                            
+                                            <DatePicker
+           // visiblity={'hidden'}
+           selected={startDate}
+            onChange={date => setStartDate(date)}
+            dateFormat="dd/MM/yyyy"
+            name="Hire Date" />
+                                            
+                                           
+                                        </li>
+                                        
+                                        <li>
+                                            <h4>Manager Name</h4>
+                                            <h5>{EmployeeItem.managerName }</h5>
+                                        </li>
+                                       
+                                        <li>
+                                            <h4>Department Name</h4>
+                                            <h5>{EmployeeItem.departmentName}</h5>
                                         </li>
                                         <li>
-                                            <h4>Model</h4>
-                                            <h5>{AssetItem.model }</h5>
+                                            <h4>Designation Name</h4>
+                                            <h5>{EmployeeItem.designationName}</h5>
                                         </li>
                                         <li>
-                                            <h4>YTD Cost</h4>
-                                            <h5></h5>
+                                            <h4>Blood Group ID</h4>
+                                            <h5>{EmployeeItem.bloodGroupName}</h5>
+                                        </li>
+                                        {/* <li>
+                                            <h4>Created By</h4>
+                                            <h5>{EmployeeItem.createdBy}</h5>
                                         </li>
                                         <li>
-                                            <h4>Purchase Price</h4>
-                                            <h5>{AssetItem.purchasePrice }</h5>
-                                        </li>
-                                        <li>
-                                            <h4>LTD Cost</h4>
-                                            <h5></h5>
-                                        </li>
-                                        <li>
-                                            <h4>Installation Date</h4>
-                                            <h5>{AssetItem.installationDate }</h5>
-                                        </li>
-                                        <li>
-                                            <h4>YTD MTBF</h4>
-                                            <h5></h5>
-                                        </li>
-                                        <li>
-                                            <h4>Supplier</h4>
-                                            <h5></h5>
-                                        </li>
+                                            <h4>Modified By</h4>
+                                            <h5>{EmployeeItem.modifiedBy}</h5>
+                                        </li> */}
                                     </ul>
                                 </div>
                                 {/* <div className='asset_detail_img_wrap'>
@@ -213,15 +227,21 @@ export default function AssetDetailTab({tabactive}) {
                 <div className='asset_document_section_outer_wrap'>
                     <div className='asset_table_outer_wrap'>
                         <div className='page_title_outer_wrap assets_detail_title_outer_wrap'>
-                            <h1>Parts</h1>
+                            <h1>Experience</h1>
                         </div>
                         <div className='asset_table_inner_wrap'>
                             <Table hover responsive>
                                 <thead>
                                     <tr>
-                                        <td>Part ID</td>
-                                        <td>Part Name</td>
-                                        <td>Qty</td>
+                                        <td>Employee ID</td>
+                                        <td>Company Name</td>
+                                        <td>Designation</td>
+                                        <td>Start Date</td>
+                                        <td>End Date</td>
+                                        <td>Years Worked</td>
+                                        <td>Salary</td>
+                                        <td>Created By</td>
+                                        <td>Modified By</td>
                                     </tr>
                                 </thead>
 
@@ -286,111 +306,113 @@ export default function AssetDetailTab({tabactive}) {
                 <div className='asset_document_section_outer_wrap'>
                     <div className='asset_table_outer_wrap'>
                         <div className='page_title_outer_wrap assets_detail_title_outer_wrap'>
-                            <h1>Work Orders</h1>
+                            <h1>Family Details</h1>
                         </div>
                         <div className='asset_table_inner_wrap'>
                             <Table hover responsive>
                                 <thead>
                                     <tr>
-                                        <td>WO ID</td>
-                                        <td>Description</td>
-                                        <td>Status ID</td>
-                                        <td>Planned Start Date</td>
-                                        <td>Planned End Date</td>
-                                        <td>Actual Start Date</td>
-                                        <td>Actual End Date</td>
+                                        <td>Employee ID</td>
+                                        <td>Name</td>
+                                        <td>Relationship </td>
+                                        <td>Age</td>
+                                        <td>DOB</td>
+                                        <td>Contact Number</td>
+                                        <td>Created BY</td>
+                                        <td>Modified BY</td>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td className='asset_id_col'>SPDF2021</td>
+                                        
+                                        {/* <td className='asset_id_col'>SPDF2021</td>
                                         <td>Racking Assemble(A144)</td>
                                         <td>JDF05242.0</td>
                                         <td>2022-03-11</td>
                                         <td>2022-03-11</td>
                                         <td>2022-03-11</td>
-                                        <td>2022-03-11</td>
+                                        <td>2022-03-11</td> */}
                                     </tr>
                                     <tr>
-                                        <td className='asset_id_col'>SPDF2021</td>
+                                        {/* <td className='asset_id_col'>SPDF2021</td>
                                         <td>Racking Assemble(A144)</td>
                                         <td>JDF05242.0</td>
                                         <td>2022-03-11</td>
                                         <td>2022-03-11</td>
                                         <td>2022-03-11</td>
-                                        <td>2022-03-11</td>
+                                        <td>2022-03-11</td> */}
                                     </tr>
                                     <tr>
-                                        <td className='asset_id_col'>SPDF2021</td>
+                                        {/* <td className='asset_id_col'>SPDF2021</td>
                                         <td>Racking Assemble(A144)</td>
                                         <td>JDF05242.0</td>
                                         <td>2022-03-11</td>
                                         <td>2022-03-11</td>
                                         <td>2022-03-11</td>
-                                        <td>2022-03-11</td>
+                                        <td>2022-03-11</td> */}
                                     </tr>
                                     <tr>
-                                        <td className='asset_id_col'>SPDF2021</td>
+                                        {/* <td className='asset_id_col'>SPDF2021</td>
                                         <td>Racking Assemble(A144)</td>
                                         <td>JDF05242.0</td>
                                         <td>2022-03-11</td>
                                         <td>2022-03-11</td>
                                         <td>2022-03-11</td>
-                                        <td>2022-03-11</td>
+                                        <td>2022-03-11</td> */}
                                     </tr>
                                     <tr>
-                                        <td className='asset_id_col'>SPDF2021</td>
+                                        {/* <td className='asset_id_col'>SPDF2021</td>
                                         <td>Racking Assemble(A144)</td>
                                         <td>JDF05242.0</td>
                                         <td>2022-03-11</td>
                                         <td>2022-03-11</td>
                                         <td>2022-03-11</td>
-                                        <td>2022-03-11</td>
+                                        <td>2022-03-11</td> */}
                                     </tr>
                                     <tr>
-                                        <td className='asset_id_col'>SPDF2021</td>
+                                        {/* <td className='asset_id_col'>SPDF2021</td>
                                         <td>Racking Assemble(A144)</td>
                                         <td>JDF05242.0</td>
                                         <td>2022-03-11</td>
                                         <td>2022-03-11</td>
                                         <td>2022-03-11</td>
-                                        <td>2022-03-11</td>
+                                        <td>2022-03-11</td> */}
                                     </tr>
                                     <tr>
-                                        <td className='asset_id_col'>SPDF2021</td>
+                                        {/* <td className='asset_id_col'>SPDF2021</td>
                                         <td>Racking Assemble(A144)</td>
                                         <td>JDF05242.0</td>
                                         <td>2022-03-11</td>
                                         <td>2022-03-11</td>
                                         <td>2022-03-11</td>
-                                        <td>2022-03-11</td>
+                                        <td>2022-03-11</td> */}
                                     </tr>
                                     <tr>
-                                        <td className='asset_id_col'>SPDF2021</td>
+                                        {/* <td className='asset_id_col'>SPDF2021</td>
                                         <td>Racking Assemble(A144)</td>
                                         <td>JDF05242.0</td>
                                         <td>2022-03-11</td>
                                         <td>2022-03-11</td>
                                         <td>2022-03-11</td>
-                                        <td>2022-03-11</td>
+                                        <td>2022-03-11</td> */}
                                     </tr>
                                     <tr>
-                                        <td className='asset_id_col'>SPDF2021</td>
+                                        {/* <td className='asset_id_col'>SPDF2021</td>
                                         <td>Racking Assemble(A144)</td>
                                         <td>JDF05242.0</td>
                                         <td>2022-03-11</td>
                                         <td>2022-03-11</td>
                                         <td>2022-03-11</td>
-                                        <td>2022-03-11</td>
+                                        <td>2022-03-11</td> */}
                                     </tr>
                                     <tr>
-                                        <td className='asset_id_col'>SPDF2021</td>
+                                        {/* <td className='asset_id_col'>SPDF2021</td>
                                         <td>Racking Assemble(A144)</td>
                                         <td>JDF05242.0</td>
                                         <td>2022-03-11</td>
                                         <td>2022-03-11</td>
                                         <td>2022-03-11</td>
-                                        <td>2022-03-11</td>
+                                        <td>2022-03-11</td> */}
                                     </tr>
                                 </tbody>
                             </Table>
@@ -436,6 +458,161 @@ export default function AssetDetailTab({tabactive}) {
                 </div>
             </TabPane>
             <TabPane tabId="4">
+                <div className='asset_document_section_outer_wrap'>
+                    <div className='asset_table_outer_wrap'>
+                        <div className='page_title_outer_wrap assets_detail_title_outer_wrap'>
+                            <h1>Qualification</h1>
+                        </div>
+                        <div className='asset_table_inner_wrap'>
+                            <Table hover responsive>
+                                <thead>
+                                    <tr>
+                                        <td>Employee ID</td>
+                                        <td>Degree Name</td>
+                                        <td>Institute Name </td>
+                                        <td>University Name</td>
+                                        <td>Year Of Passing</td>
+                                        <td>Percentage</td>
+                                        <td>Created BY</td>
+                                        <td>Modified BY</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        
+                                        {/* <td className='asset_id_col'>SPDF2021</td>
+                                        <td>Racking Assemble(A144)</td>
+                                        <td>JDF05242.0</td>
+                                        <td>2022-03-11</td>
+                                        <td>2022-03-11</td>
+                                        <td>2022-03-11</td>
+                                        <td>2022-03-11</td> */}
+                                    </tr>
+                                    <tr>
+                                        {/* <td className='asset_id_col'>SPDF2021</td>
+                                        <td>Racking Assemble(A144)</td>
+                                        <td>JDF05242.0</td>
+                                        <td>2022-03-11</td>
+                                        <td>2022-03-11</td>
+                                        <td>2022-03-11</td>
+                                        <td>2022-03-11</td> */}
+                                    </tr>
+                                    <tr>
+                                        {/* <td className='asset_id_col'>SPDF2021</td>
+                                        <td>Racking Assemble(A144)</td>
+                                        <td>JDF05242.0</td>
+                                        <td>2022-03-11</td>
+                                        <td>2022-03-11</td>
+                                        <td>2022-03-11</td>
+                                        <td>2022-03-11</td> */}
+                                    </tr>
+                                    <tr>
+                                        {/* <td className='asset_id_col'>SPDF2021</td>
+                                        <td>Racking Assemble(A144)</td>
+                                        <td>JDF05242.0</td>
+                                        <td>2022-03-11</td>
+                                        <td>2022-03-11</td>
+                                        <td>2022-03-11</td>
+                                        <td>2022-03-11</td> */}
+                                    </tr>
+                                    <tr>
+                                        {/* <td className='asset_id_col'>SPDF2021</td>
+                                        <td>Racking Assemble(A144)</td>
+                                        <td>JDF05242.0</td>
+                                        <td>2022-03-11</td>
+                                        <td>2022-03-11</td>
+                                        <td>2022-03-11</td>
+                                        <td>2022-03-11</td> */}
+                                    </tr>
+                                    <tr>
+                                        {/* <td className='asset_id_col'>SPDF2021</td>
+                                        <td>Racking Assemble(A144)</td>
+                                        <td>JDF05242.0</td>
+                                        <td>2022-03-11</td>
+                                        <td>2022-03-11</td>
+                                        <td>2022-03-11</td>
+                                        <td>2022-03-11</td> */}
+                                    </tr>
+                                    <tr>
+                                        {/* <td className='asset_id_col'>SPDF2021</td>
+                                        <td>Racking Assemble(A144)</td>
+                                        <td>JDF05242.0</td>
+                                        <td>2022-03-11</td>
+                                        <td>2022-03-11</td>
+                                        <td>2022-03-11</td>
+                                        <td>2022-03-11</td> */}
+                                    </tr>
+                                    <tr>
+                                        {/* <td className='asset_id_col'>SPDF2021</td>
+                                        <td>Racking Assemble(A144)</td>
+                                        <td>JDF05242.0</td>
+                                        <td>2022-03-11</td>
+                                        <td>2022-03-11</td>
+                                        <td>2022-03-11</td>
+                                        <td>2022-03-11</td> */}
+                                    </tr>
+                                    <tr>
+                                        {/* <td className='asset_id_col'>SPDF2021</td>
+                                        <td>Racking Assemble(A144)</td>
+                                        <td>JDF05242.0</td>
+                                        <td>2022-03-11</td>
+                                        <td>2022-03-11</td>
+                                        <td>2022-03-11</td>
+                                        <td>2022-03-11</td> */}
+                                    </tr>
+                                    <tr>
+                                        {/* <td className='asset_id_col'>SPDF2021</td>
+                                        <td>Racking Assemble(A144)</td>
+                                        <td>JDF05242.0</td>
+                                        <td>2022-03-11</td>
+                                        <td>2022-03-11</td>
+                                        <td>2022-03-11</td>
+                                        <td>2022-03-11</td> */}
+                                    </tr>
+                                </tbody>
+                            </Table>
+                        </div>
+                        <div className="pagination_outer_wrap">
+                            <div className="select_per_page_outer_wrap">
+                                <label>
+                                    Rows per page:
+                                </label>
+                                <select >
+                                    <option value="10" selected>10</option>
+                                    <option value="20">20</option>
+                                    <option value="30">30</option>
+                                </select>
+                                <p><span>1-10</span> of <span>13</span></p>
+                            </div>
+                            <div className="pagination_navigation_wrap">
+                                <ul>
+                                    <li className="prev_back">
+                                        <Link to="/">
+                                            <img src={back_arrow} alt="back_arrow"/>
+                                        </Link>
+                                    </li>
+                                    <li className="prev_back">
+                                        <Link to="/">
+                                            <img src={leftarrow} alt="left-arrow"/>
+                                        </Link>
+                                    </li>
+                                    <li className="nextback">
+                                        <Link to="/">
+                                            <img src={leftarrow} alt="left-arrow"/>
+                                        </Link>
+                                    </li>
+                                    <li className="next_back_arrow">
+                                        <Link to="/">
+                                            <img src={back_arrow} alt="back_arrow"/>
+                                        </Link>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </TabPane>
+            {/* <TabPane tabId="5">
                 <div className={`asset_specification_outer_wrap ${tabactive ? "active" : "false"}`}>
                     <div className='asset_document_section_outer_wrap'>
                         <div className='asset_table_outer_wrap'>
@@ -674,7 +851,7 @@ export default function AssetDetailTab({tabactive}) {
                         </div>
                     </div>
                 </div>
-            </TabPane>
+            </TabPane> */}
         </TabContent>
     </div>
   );

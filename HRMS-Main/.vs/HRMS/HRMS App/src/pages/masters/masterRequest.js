@@ -5,138 +5,281 @@ function masterRequest(){
     
   [
     {
-      "masterName": "assetCategory",
+      "masterName": "Department",
       "requestJson":
       [
         {
-            "assetCategoryName":null
-            , "parentAssetCategoryName":null
-          , "Id":"00000000-0000-0000-0000-000000000000"
-          ,"assetCategoryCode":null
-          ,"parentCategoryId":null
+            "DepartmentName":null
+            
+          , "DepartmentId":"00000000-0000-0000-0000-000000000000"
+          , "createdBy" : null
 
         }
       ]
     },
     {
-      "masterName": "assetsCriticality",
-      "requestJson":
-      [
-        {"criticalityName":"<criticalityName>"
-        , "Id":"00000000-0000-0000-0000-000000000000"
-        ,"rpnFrom":"<rpnFrom>"
-        ,"rpnTo":"<rpnTo>"
-      }]
-    }
-    ,
-    {
-      "masterName": "assetsPriority",
-      "requestJson":
-        [
-          {"priorityName":"<priorityName>"}
-        ]
-    }
-    ,
-    {
-      "masterName": "assetsStatus",
-      "requestJson":
-        [
-          {"statusName":"<statusName>","Comments":null,"Notes":null}
-        ]
-    }
-    ,{
-      "masterName": "assetsType",
-      "requestJson":
-        [
-          {"assetTypeName":"<assetTypeName>"}
-        ]
-    }
-    ,{
-      "masterName": "assetsWarranty",
-      "requestJson":
-        [
-          {
-            "warrantyName":"<warrantyName>"
-          ,"StartDate":"0001-01-01T00:00:00"
-          ,"ExpirationDate":"0001-01-01T00:00:00"
-          ,"WarrantyType":0,"WarrantyStatus":0
-          ,"ThreshholdDate":"0001-01-01T00:00:00"
-          ,"StartingUsage":"","ExpirationUsage":""
-          ,"ThreshHoldUOM":""
-          ,"Comments":null,"Notes":null
-          }
-
-        ]
-    }
-
-    ,
-    {
-      "masterName": "locationType",
+      "masterName": "Designation",
       "requestJson":
       [
         {
-          "locationTypeName":"<locationTypeName>"
-          ,"Id":"00000000-0000-0000-0000-000000000000"
-      }
+            "designationName":null
+            
+          , "designationId":"00000000-0000-0000-0000-000000000000"
+          , "createdBy" : null
+          
 
+        }
       ]
-    }
-    ,
+    },
     {
-      "masterName": "location",
+      "masterName": "LeaveType",
       "requestJson":
       [
         {
-          "parentLocationId":"00000000-0000-0000-0000-000000000000"
-          ,"locationName":"<locationName>"
-          ,"locationDesc":"<locationDesc>"
-          ,"locationTypeId":"00000000-0000-0000-0000-000000000000"
-        ,"Id":"00000000-0000-0000-0000-000000000000"
-      }
+            "leaveTypeName":null
+            
+          , "leaveTypeId":"00000000-0000-0000-0000-000000000000",
+             "createdBy" : null
+          
 
+        }
       ]
-    }
-
-    ,
+    },
     {
-      "masterName": "assetsLocation",
+      "masterName": "EmployeeType",
       "requestJson":
       [
-        {"assetId":"00000000-0000-0000-0000-000000000000"
-        ,"locationId":"00000000-0000-0000-0000-000000000000"
-        ,"quantity":0.0
-        ,"Id":"00000000-0000-0000-0000-000000000000"
-        ,"Comments":null
-        ,"Notes":null
-      }
+        {
+            "employeeTypeName":null
+            
+          , "employeeTypeId":"00000000-0000-0000-0000-000000000000",
+             "createdBy" : null
+          
 
+        }
       ]
-    }
-    ,{
-      "masterName": "assets",
+    },
+    {
+      "masterName": "AddressType",
       "requestJson":
       [
-        {"assetName":"<assetName>"
-        ,"serialNumber":"<serialNumber>"
-        ,"model":""
-        ,"purchasePrice":0.0
-        ,"installationDate":null
-        ,"startDate":null
-        ,"expirationDate":null
-        ,"threshHoldCalendar":null
-        //,"StartingUsage":"","ExpirationUsage":""
-        //,"QrCodeData":""
-        ,"assetTypeId":"00000000-0000-0000-0000-000000000000"
-        ,"uomId":"00000000-0000-0000-0000-000000000000"
-        ,"assetWarrantyId":"00000000-0000-0000-0000-000000000000"
-        ,"assetCategoryId":"00000000-0000-0000-0000-000000000000"
-        ,"failureClassesId":"00000000-0000-0000-0000-000000000000"
-        ,"assetPriorityId":"00000000-0000-0000-0000-000000000000"
-        ,"assetCriticalityId":"00000000-0000-0000-0000-000000000000"
-        ,"assetStatusId":"00000000-0000-0000-0000-000000000000"
-        ,"parentAssetId":"00000000-0000-0000-0000-000000000000"
-      }
-     ]
+        {
+            "addressTypeName":null
+            
+          , "addressTypeId":"00000000-0000-0000-0000-000000000000",
+             "createdBy" : null
+          
+
+        }
+      ]
+    },
+    {
+      "masterName": "BloodGroup",
+      "requestJson":
+      [
+        {
+            "bloodGroupName":null
+            
+          , "bloodGroupID":"00000000-0000-0000-0000-000000000000",
+             "createdBy" : null
+          
+
+        }
+      ]
+    },
+    {
+      "masterName": "Location",
+      "requestJson":
+      [
+        {
+            "locationName":null
+            
+          , "locationID":"00000000-0000-0000-0000-000000000000",
+             "createdBy" : null
+          
+
+        }
+      ]
+    },
+    {
+      "masterName": "Relationship",
+      "requestJson":
+      [
+        {
+            "relationShipName":null
+            
+          , "relationShipId":"00000000-0000-0000-0000-000000000000",
+             "createdBy" : null
+          
+
+        }
+      ]
+    },
+    {
+      "masterName": "ClaimType",
+      "requestJson":
+      [
+        {
+            "claimTypeName":null
+            
+          , "claimTypeId":"00000000-0000-0000-0000-000000000000",
+             "createdBy" : null
+          
+
+        }
+      ]
+    },
+    {
+      "masterName": "AppraisalObjectives",
+      "requestJson":
+      [
+        {
+            "appraisalName":null
+            
+          , "appraisalId":"00000000-0000-0000-0000-000000000000",
+             "createdBy" : null
+          
+
+        }
+      ]
+    },
+    {
+      "masterName": "HrmsUser",
+      "requestJson":
+      [
+        {
+            
+            "userName":null,
+            "firstName":null,
+            "lastName":null,
+            "middleName":null,
+            
+            
+            
+           "hrmsUserID":"00000000-0000-0000-0000-000000000000",
+             "createdBy" : null
+          
+
+        }
+      ]
+    },
+    {
+      "masterName": "HrmsRole",
+      "requestJson":
+      [
+        {
+            "roleName":null
+            
+          , "roleId":"00000000-0000-0000-0000-000000000000",
+             "createdBy" : null
+        
+
+        }
+      ]
+    },
+    {
+      "masterName": "HrmsPage",
+      "requestJson":
+      [
+        {
+            "pageName":null,
+            "roleID":"00000000-0000-0000-0000-000000000000"
+            
+          , "pageId":"00000000-0000-0000-0000-000000000000",
+             "createdBy" : null
+          
+
+        }
+      ]
+    },
+    {
+      "masterName": "EmployeeDetails",
+      "requestJson":
+      [
+        {   
+            // "organisationID":null,
+            // "autoNumber":null,
+            "firstName":null,
+            "middleName":null,
+            "lastName":null,
+            "employeeName":null,
+            "dateOfBirth":null,
+            "age":null,
+            "gender":null,
+            "email":null,
+            "phoneNumber":null,
+            "emergencyContactNumber":null,
+            "location":null,
+            "maritalStatus":null,
+            "hireDate":null,
+            // "managerID":null,
+            "managerName":null,
+            // "businessTitleID":null,
+            // "departmentID":null,
+            "departmentName":null,
+            // "designationID":null,
+            "designationName":null,
+            // "bloodGroupID":null,
+            "bloodGroupName":null
+            // "createdBy":null,
+            // "modifiedBy":null
+
+
+            
+          , "employeeID":"00000000-0000-0000-0000-000000000000"
+             
+          
+
+        }
+      ]
+    },
+    {
+      "masterName": "EmployeeExperience",
+      "requestJson":
+      [
+        {   
+            "employeeID":null,
+            "companyName":null,
+            "designation":null,
+            "startDate":null,
+            "endDate":null,
+            "yearsWorked":null,
+            "salary":null,
+            "createdBy":null,
+            "modifiedBy":null
+
+
+            
+          , "employeeExperienceID":"00000000-0000-0000-0000-000000000000"
+             
+          
+
+        }
+      ]
+    },
+    {
+      "masterName": "EmployeeFamilyDetail",
+      "requestJson":
+      [
+        {   
+            "employeeID":null,
+            "name":null,
+            "relationShip":null,
+            "startDate":null,
+            "age":null,
+            "dob":null,
+            "contactNo":null,
+            "createdBy":null,
+            "modifiedBy":null
+
+
+            
+          , "employeeFamilyDetailID":"00000000-0000-0000-0000-000000000000"
+             
+          
+
+        }
+      ]
     }
   ]
   

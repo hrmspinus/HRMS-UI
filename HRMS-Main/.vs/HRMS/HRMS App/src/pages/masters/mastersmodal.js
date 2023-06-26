@@ -20,8 +20,7 @@ import { UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem,   Mod
   
 const PopUpModal = ({show, formInputdata, onCancel, editUser,headerlist
   ,formMode,masterName,masterTitle,formSelectData}) => {
-  
- 
+      
 var selectOptionsAssetCatg=null;    
 const [formControlValue, setformControlValue] = useState();
 const [ColumnHeaders, setColumnHeaders] = useState([]);
@@ -37,10 +36,16 @@ const [AssetPriorityList,setAssetPriorityList] = useState([]);
 const [AssetCriticalityList,setAssetCriticalityList] = useState([]);    
 const [AssetStatusList,setAssetStatusList] = useState([]);    
 const [AssetList,setAssetList] = useState([]);    
-const [FailureClassList,setFailureClassList] = useState([]);    
+const [FailureClassList,setFailureClassList] = useState([]);  
+const [PartsgroupList,setPartsgroupList] = useState([]);  
+const [MeterGroupList,setMeterGroupList] = useState([]); 
+const [MeterTypeList,setMeterTypeList] = useState([]); 
+const [ReadingTypeList,setReadingTypeList] = useState([]);  
 const [UomList,setUomList] = useState([]);    
 const [LocationList,setLocationList] = useState([]);    
-const [LocationTypeList,setLocationTypeList] = useState([]);    
+const [LocationTypeList,setLocationTypeList] = useState([]); 
+const [TechSpecList,setTechSpecList] = useState([]);  
+  
 const [selectedOption, setSelectedOption] = useState([]);
 const [formdataColection, setformdataColection] = useState(formInputdata);
 const [formSelectValueList, setformSelectValueList] = useState([]);
@@ -48,20 +53,13 @@ const [paramcontentInPopUp,setparamcontentInPopUp]= useState(false);
 const [paramshowInWindow,setparamshowInWindow]= useState(false); 
     // handle onChange event of the dropdown
 
-useEffect(() => {
-   if(formInputdata!=null){
-    var localformSelectData=formInputdata['parentCategoryId'];
-    var catgList=AssetCategoryList.filter(item=>item.value==localformSelectData);
-    setSelectedOption(catgList);
-  }
-  
-}, [formInputdata]);    
+
 const handleSelectOptionChange = e => {
   setSelectedOption(e);
   formSelectListData=e;
   //selectOptionsAssetCatg=e;
 }
-const getAPIUrl = (methodType) => {
+const getAPIUrl = (methodType) => {  
   var apiUrl='./masterPostAPI.json';
   if(methodType=="POST"){
     apiUrl=require('./masterPostAPI.json');
@@ -73,7 +71,10 @@ const getAPIUrl = (methodType) => {
     apiUrl=require('./masterDeleteAPI.json');
   }
   var methodAPIUrl = apiUrl.filter(a => a.masterName == masterName);
-  return methodAPIUrl[0].apiURL;     
+  if(methodAPIUrl.length >0){
+    return methodAPIUrl[0].apiURL;       
+  }
+  
 }
 const BASE_URL = (url) => Configuration.BASE_URL + url;    
 
@@ -96,13 +97,17 @@ const [maxTime, setMaxTime] = React.useState(
   setHours(setMinutes(new Date(), 59), 23)
 );
 
+if(RequestJson!=null){
+  var requestJSonValue=RequestJson.filter(a => a.masterName == masterName);
+  if(requestJSonValue.length>0){
+    var g_InitialJsonInput=requestJSonValue[0].requestJson[0];
+    //setInitialJsonInput(requestJSonValue[0].requestJson[0]);
+  }
+
+}
 
 const [MasterKeyList, setMasterKeyList] = useState();
-  // useEffect(() => {
-    
-  //   if (editUser) setFormData(editUser);
-  // }, [editUser]);
-
+  
   const navigate = useNavigate();
   const refreshPage = () => {
     navigate(0);
@@ -116,15 +121,20 @@ const [MasterKeyList, setMasterKeyList] = useState();
   const  getMasterList=(parentName) =>{ 
      var lstGetApi = getMasterListApi.filter(a => a.masterName == parentName);
    const getMasterListAPIUrl=BASE_URL(lstGetApi[0].apiURL);
-   
    var tempJsonList=[{"label" : "Select" ,"value" : "0"}];
    fetch(getMasterListAPIUrl)
    .then(response => response.json())
    .then(data => {
-     Object.keys(data.result).map((jsonItem)=>{
-      var paramJsonList=data.result;
+    var APIResult=data.result;
+    if(parentName=="metertypes" || parentName=="readingtypes"){
+      
+      APIResult=data;
+     }
+     Object.keys(APIResult).map((jsonItem)=>{
+      
+      var paramJsonList=APIResult;
       var paramJsonItem= paramJsonList[jsonItem];
-     
+    
       var dynamicJson={"label" : "Select" ,"value" : "0"};
       if(parentName=="assetCategory"){
         dynamicJson["label"] =  paramJsonItem["assetCategoryName"];
@@ -143,7 +153,9 @@ const [MasterKeyList, setMasterKeyList] = useState();
       if(parentName=="assetsCriticality"){
         dynamicJson["label"] =  paramJsonItem["criticalityName"];
       }
-      
+      if(parentName=="partsGroup"){
+        dynamicJson["label"] =  paramJsonItem["partGroupName"];
+      }
       if(parentName=="assetsStatus"){
         dynamicJson["label"] =  paramJsonItem["statusName"];
       }
@@ -162,11 +174,24 @@ const [MasterKeyList, setMasterKeyList] = useState();
       if(parentName=="locationType"){
         dynamicJson["label"] =  paramJsonItem["locationTypeName"];
       }
-//      dynamicJson["label"] =  paramJsonItem["assetCategoryName"];
+      if(parentName=="technicalspec"){
+        dynamicJson["label"] =  paramJsonItem["techSpecName"];
+      }
+      if(parentName=="metergroup"){
+        dynamicJson["label"] =  paramJsonItem["meterGroupName"];
+      }
+
+      if(parentName=="metertypes"){ 
+        dynamicJson["label"] =  paramJsonItem["text"];
+      }
+
+      if(parentName=="readingtypes"){
+        dynamicJson["label"] =  paramJsonItem["text"];
+      }
+
       dynamicJson["value"] = paramJsonItem["id"];
       tempJsonList.push(dynamicJson);
-      //setMasterForSelectControl(tempJsonList);
-      //var jsonConvert=Json.parse(dynamicJson);
+      
      });
      if(parentName=="assetCategory"){
       setAssetCategoryList(tempJsonList);
@@ -218,7 +243,28 @@ const [MasterKeyList, setMasterKeyList] = useState();
       setLocationTypeList(tempJsonList);
       return LocationTypeList;
     }
-     //return tempJsonList;
+    if(parentName=="technicalspec"){
+      setTechSpecList(tempJsonList);
+      return TechSpecList;
+    }
+
+    if(parentName=="partsGroup"){
+      setPartsgroupList(tempJsonList);
+      return PartsgroupList;
+    }
+    if(parentName=="metergroup"){
+      setMeterGroupList(tempJsonList);
+      return MeterGroupList;
+    }
+    if(parentName=="metertypes"){
+      setMeterTypeList(tempJsonList);
+      return MeterTypeList;
+    }
+
+    if(parentName=="readingtypes"){
+      setReadingTypeList(tempJsonList);
+      return ReadingTypeList;
+    }
    }
    ,
          err => {
@@ -233,6 +279,10 @@ const [MasterKeyList, setMasterKeyList] = useState();
   if(listName=="assetCategory"){
     return AssetCategoryList;
   }
+  if(listName=="partsGroup"){
+    return PartsgroupList;
+  }
+
   if(listName=="assetsType"){
     
     return AssetTypeList;
@@ -272,11 +322,28 @@ const [MasterKeyList, setMasterKeyList] = useState();
   if(listName=="locationType"){
       return LocationTypeList;
   }
+  if(listName=="technicalspec"){
+    return TechSpecList;
+  }
+  if(listName=="metergroup"){
+    return MeterGroupList;
+  }
+  if(listName=="metertypes"){
+    return MeterTypeList;
+  }
+
+  if(listName=="readingtypes"){
+    return ReadingTypeList;
+  }
  }
   const initialFormState = () => {
     //RequestJson.filter(a => a.masterName == masterName)[0].requestJson
     setMasterKeyList(masterKeys);
-    setInitialJsonInput(RequestJson.filter(a => a.masterName == masterName)[0].requestJson[0]);
+    var requestJSonFilter=RequestJson.filter(a => a.masterName == masterName);
+    if(requestJSonFilter.length>0){
+      setInitialJsonInput(requestJSonFilter[0].requestJson[0]);
+    }
+    
     getMasterList('assetCategory');
     getMasterList('assetsType');
     getMasterList('assetsWarranty');
@@ -288,6 +355,15 @@ const [MasterKeyList, setMasterKeyList] = useState();
     getMasterList('uom');
     getMasterList('location');
     getMasterList('locationType');
+    getMasterList('technicalspec');
+    
+    getMasterList('partsGroup');
+    getMasterList('metergroup');
+    
+    getMasterList('metertypes');
+    getMasterList('readingtypes');
+   
+
     setparamcontentInPopUp(false);
     setparamshowInWindow(false);
     
@@ -305,7 +381,7 @@ if(listType=="assetsWarranty"){
 //warrantyName
   }
   const postJsonData = () =>  {
-    
+    debugger;
     // Simple POST request with a JSON body using fetch
     const requestOptions = {
         method: 'POST',
@@ -318,7 +394,7 @@ if(listType=="assetsWarranty"){
 }
 const putJsonData = () =>  {
   // Simple POST request with a JSON body using fetch
-  debugger;
+  
   const requestOptions = {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
@@ -407,7 +483,11 @@ const deleteJsonData = () =>  {
   const showListPopUp=(paramMasterName)=>{
     setparamcontentInPopUp(true);
     setparamshowInWindow(false);
-    setColumnHeaders(MasterHeaderList.filter(a => a.masterName == paramMasterName)[0].headerName);
+    var headerList=MasterHeaderList.filter(a => a.masterName == paramMasterName);
+    if(headerList.length>0){
+      setColumnHeaders(headerList[0].headerName);
+    }
+    
   }
   
   const hideListPopUp=()=>{
@@ -436,11 +516,17 @@ const deleteJsonData = () =>  {
   }
   const updateControlSelect=(name,value)=>{
     //let tempJson=InitialJsonInput;
-    InitialJsonInput[name]=value.value;
-    formInputdata[name]=value.value;
-   // let tempJson=InitialJsonInput;
-
-   let tempJson=JsonInput;
+    if(InitialJsonInput==null || InitialJsonInput==""){
+      setInitialJsonInput(g_InitialJsonInput);
+    }
+    if(InitialJsonInput!=null){
+      InitialJsonInput[name]=value.value;
+    }
+    if(formInputdata!=null){
+      formInputdata[name]=value.value;
+    }
+    
+    let tempJson=JsonInput;
    
    if(JsonInput==null){
      var tempJsonString=  "{" + '"' + name+  '"' + ":"+ '"'+ value.value +  '"' + "}";
@@ -469,24 +555,29 @@ const deleteJsonData = () =>  {
   
  
   const getControlValue =(paramformControlValue,paramcontrolValue)=>{
-  if(paramformControlValue!=null && paramcontrolValue!=null){
-    console.log(paramformControlValue[paramcontrolValue]);
-    return paramformControlValue[paramcontrolValue];
-  }
+    if(formMode=="Edit"){
+      if(paramformControlValue!=null && paramcontrolValue!=null){
+        console.log(paramformControlValue[paramcontrolValue]);
+        return paramformControlValue[paramcontrolValue];
+      }
+    }
+  
+  
   }
    
   const [formData, setFormData] = useState(initialFormState);
   
-  const getFormFields =()=>{ debugger;
-     
-    
-    if(formControlValue==null){
+  const getFormFields =()=>{ 
+    if(formControlValue==null && formInputdata!=null){
       setformControlValue(formInputdata);
     }
-    else if(formControlValue["id"] != formInputdata["id"]){
-      setformControlValue(formInputdata);
+    if(formControlValue!=null){
+      if(formControlValue["id"] != formInputdata["id"]){
+        setformControlValue(formInputdata);
+      }
+      
     }
-    
+   
     if(formMode=='Delete'){
       deleteJsonData();
     }
@@ -534,7 +625,6 @@ const deleteJsonData = () =>  {
                    value={selectedOption} 
                     options={ getMasterForSelectControl(headerlist[data].parentName,headerlist[data].jsonHeader,formSelectValueList)} // set list of the data
                     onChange={(optionSelected) => {
-                      debugger;
                       handleSelectOptionChange();
                       updateControlSelect(headerlist[data].jsonHeader,optionSelected);
                     }}
@@ -579,10 +669,7 @@ const deleteJsonData = () =>  {
             else{
               return   <li>
             <label  className="lblCaption">{headerlist[data].htmlHeader}</label>
-            {/* <input type="text" 
-                name="txtnew" 
-                value ={getControlValue(formControlValue,headerlist[data].jsonHeader)}
-                /> */}
+           
             <input type="text" 
               name={headerlist[data].jsonHeader} 
               value ={getControlValue(formControlValue,headerlist[data].jsonHeader)}

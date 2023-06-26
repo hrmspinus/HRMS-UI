@@ -1,45 +1,71 @@
 [
     {
-      "masterName": "assetCategory",
-      "apiURL": "/assetcategory/update"
+      "masterName": "Department",
+      "apiURL": "/Department/update"
     },
     {
-      "masterName": "assetsCriticality",
-      "apiURL": "/assetscriticality/update"
-    }
-    ,
+      "masterName": "Designation",
+      "apiURL": "/Designation/update"
+    },
     {
-      "masterName": "assetsPriority",
-      "apiURL": "/assetpriority/update"
-    }
-    ,
+      "masterName": "LeaveType",
+      "apiURL": "/LeaveType/update"
+    },
     {
-      "masterName": "assetsStatus",
-      "apiURL": "/assetstatus/update"
-    }
-    ,{
-      "masterName": "assetsType",
-      "apiURL": "/assettype/update"
-    }
-    ,{
-      "masterName": "assetsWarranty",
-      "apiURL": "/assetwarranty/update"
-    }
-    ,{
-      "masterName": "locationType",
-      "apiURL": "/locationType/update"
-    }
-    ,{
-      "masterName": "location",
-      "apiURL": "/location/update"
-    }
-    ,{
-      "masterName": "assetsLocation",
-      "apiURL": "/assetslocation/update"
-    }
-    ,{
-      "masterName": "assets",
-      "apiURL": "/assets/update"
+      "masterName": "EmployeeType",
+      "apiURL": "/EmployeeType/update"
+    },
+    {
+      "masterName": "AddressType",
+      "apiURL": "/AddressType/update"
+    },
+    {
+      "masterName": "BloodGroup",
+      "apiURL": "/BloodGroup/update"
+    },
+    {
+      "masterName": "Location",
+      "apiURL": "/Location/update"
+    },
+    {
+      "masterName": "ClaimType",
+      "apiURL": "/ClaimType/update"
+    },
+    {
+      "masterName": "Relationship",
+      "apiURL": "/Relationship/update"
+    },
+    {
+      "masterName": "AppraisalObjectives",
+      "apiURL": "/AppraisalObjectives/update"
+    },
+    {
+      "masterName": "HrmsUser",
+      "apiURL": "/HrmsUser/update"
+    },
+    {
+      "masterName": "HrmsRole",
+      "apiURL": "/HrmsRole/update"
+    },
+    {
+      "masterName": "HrmsPage",
+      "apiURL": "/HrmsPage/update"
+    },
+    {
+      "masterName": "EmployeeDetails",
+      "apiURL": "/EmployeeDetails/update"
+    },
+    {
+      "masterName": "EmployeeExperience",
+      "apiURL": "/EmployeeExperience/update"
+    },
+    {
+      "masterName": "EmployeeExperience",
+      "apiURL": "/EmployeeExperience/update"
+    },
+    {
+      "masterName": "EmployeeFamilyDetail",
+      "apiURL": "/EmployeeFamilyDetail/update"
     }
   ]
     

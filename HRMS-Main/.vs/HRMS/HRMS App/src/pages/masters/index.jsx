@@ -28,7 +28,7 @@ export default function MastersDashBoardComponent() {
     const [currentUser, setCurrentUser] = useState(null);
     const [MasterTitle, setMasterTitle] = useState(null);
     
-    const toggleModal = (user,mode) => {
+    const toggleModal = (user,mode) => {debugger;
       if(mode==null || mode==''){
         mode='Create';
       }

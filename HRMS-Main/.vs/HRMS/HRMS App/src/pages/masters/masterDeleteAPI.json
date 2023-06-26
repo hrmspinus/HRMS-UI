@@ -1,45 +1,68 @@
 [
     {
-      "masterName": "assetCategory",
-      "apiURL": "/assetcategory/delete"
+      "masterName": "Department",
+      "apiURL": "/Department/delete"
+    } ,
+    {
+      "masterName": "Designation",
+      "apiURL": "/Designation/delete"
     },
     {
-      "masterName": "assetsCriticality",
-      "apiURL": "/assetscriticality/delete"
-    }
-    ,
+      "masterName": "LeaveType",
+      "apiURL": "/LeaveType/delete"
+    },
     {
-      "masterName": "assetsPriority",
-      "apiURL": "/assetpriority/delete"
-    }
-    ,
+      "masterName": "EmployeeType",
+      "apiURL": "/EmployeeType/delete"
+    },
     {
-      "masterName": "assetsStatus",
-      "apiURL": "/assetstatus/delete"
-    }
-    ,{
-      "masterName": "assetsType",
-      "apiURL": "/assettype/delete"
-    }
-    ,{
-      "masterName": "assetsWarranty",
-      "apiURL": "/assetwarranty/delete"
-    }
-    ,{
-      "masterName": "locationType",
-      "apiURL": "/locationType/delete"
-    }
-    ,{
-      "masterName": "location",
-      "apiURL": "/location/delete"
-    }
-    ,{
-      "masterName": "assetsLocation",
-      "apiURL": "/assetslocation/delete"
-    }
-    ,{
-      "masterName": "assets",
-      "apiURL": "/assets/delete"
+      "masterName": "AddressType",
+      "apiURL": "/AddressType/delete"
+    },
+    {
+      "masterName": "BloodGroup",
+      "apiURL": "/BloodGroup/delete"
+    },
+    {
+      "masterName": "Location",
+      "apiURL": "/Location/delete"
+    },
+    {
+      "masterName": "Relationship",
+      "apiURL": "/Relationship/delete"
+    },
+    {
+      "masterName": "ClaimType",
+      "apiURL": "/ClaimType/delete"
+    },
+    {
+      "masterName": "AppraisalObjectives",
+      "apiURL": "/AppraisalObjectives/delete"
+    },
+    {
+      "masterName": "HrmsUser",
+      "apiURL": "/HrmsUser/delete"
+    },
+    {
+      "masterName": "HrmsRole",
+      "apiURL": "/HrmsRole/delete"
+    },
+    {
+      "masterName": "HrmsPage",
+      "apiURL": "/HrmsPage/delete"
+    },
+    {
+      "masterName": "EmployeeDetails",
+      "apiURL": "/EmployeeDetails/delete"
+    },
+    {
+      "masterName": "EmployeeExperience",
+      "apiURL": "/EmployeeExperience/delete"
+    },
+    {
+      "masterName": "EmployeeFamilyDetail",
+      "apiURL": "/EmployeeFamilyDetail/delete"
     }
   ]
+  
     
